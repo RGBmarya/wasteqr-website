@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"></link:rel>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap&effect=fire" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div id="info-container">
+        <h1 class="category" id="waste-type">Waste Type: <span id="waste-type-value"></span></h1>
+        <h1 class="category" id="note">Notes: <span id="note-value"></span></h1>
+        <img id="waste-type-picture" src="" alt="">
+        <br>
+
+        <p>Made with ❤️ by Mihir S. Arya</p>
+        <a id="credit" href="https://www.flaticon.com">Icons created by Freepik - Flaticon</a>
+    </div>
+</body>
+
+<script>
+    function getParameters(paramName){
+        let params = new URLSearchParams(window.location.search)
+        return params.get(paramName)
+    }
+    function setImage(wasteType){
+        console.log(wasteType)
+        if(wasteType == "Recycle"){
+            document.getElementById("waste-type-picture").src = "images/recycle-symbol.png"
+            alt = "recycle symbol"
+        }
+        else if(wasteType == "Compost"){
+            document.getElementById("waste-type-picture").src = "images/compost-symbol.png"
+            alt = "compost symbol"
+        }
+        else if(wasteType == "Landfill"){
+            document.getElementById("waste-type-picture").src = "images/landfill-symbol.png"
+            alt = "landfill symbol"
+        }
+        else if(wasteType == "E-Waste"){
+            document.getElementById("waste-type-picture").src = "images/e-waste-symbol.png"
+            alt = "e-waste symbol"
+        }
+    }
+
+    document.getElementById("waste-type-value").innerHTML = getParameters("wasteType") 
+    if(getParameters("note") != ""){
+        document.getElementById("note-value").innerHTML = getParameters("note")
+    }
+    else{
+        document.getElementById("note-value").innerHTML = "None"
+    }
+    setImage(getParameters("wasteType"))
+</script>
+</html>
